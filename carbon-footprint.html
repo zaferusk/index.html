@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carbon Footprint Calculator</title>
+  <style>
+    body { font-family: Arial; padding: 2rem; background: #fff5f0; color: #4e342e; }
+    input, select, button { padding: 0.5rem; margin-top: 0.5rem; font-size: 1rem; width: 100%; max-width: 300px; }
+    #result { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h2>Estimate Your Daily Carbon Footprint</h2>
+  <label>Car km/day: <input type="number" id="car" /></label><br>
+  <label>Electricity use (kWh/day): <input type="number" id="electricity" /></label><br>
+  <label>Diet:
+    <select id="diet">
+      <option value="omnivor">Omnivore</option>
+      <option value="vejetaryen">Vegetarian</option>
+      <option value="vegan">Vegan</option>
+    </select>
+  </label><br>
+  <label>Daily spending (TL): <input type="number" id="spending" /></label><br>
+  <button onclick="calculate()">Calculate</button>
+  <div id="result"></div>
+  <script>
+    function calculate() {
+      const km = parseFloat(document.getElementById("car").value) || 0;
+      const elec = parseFloat(document.getElementById("electricity").value) || 0;
+      const diet = document.getElementById("diet").value;
+      const spend = parseFloat(document.getElementById("spending").value) || 0;
+
+      const car_em = km * 0.2;
+      const elec_em = elec * 0.4;
+      const diet_em = diet === "omnivor" ? 5 : diet === "vejetaryen" ? 3 : 2;
+      const spend_em = spend * 0.03;
+
+      const total = car_em + elec_em + diet_em + spend_em;
+      document.getElementById("result").innerText = `Your estimated daily CO2 emission is ${total.toFixed(2)} kg.`;
+    }
+  </script>
+</body>
+</html>

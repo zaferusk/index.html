@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eco Alternatives</title>
+  <style>
+    body { font-family: Arial; padding: 2rem; background: #f0fff4; color: #2d6a4f; }
+    input, button { padding: 0.5rem; font-size: 1rem; }
+    #result { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h2>Suggest an Eco-Friendly Alternative</h2>
+  <p>Type a plastic product (e.g., plastic bottle, plastic bag):</p>
+  <input type="text" id="item" placeholder="Enter plastic product..." />
+  <button onclick="suggest()">Suggest</button>
+  <div id="result"></div>
+  <script>
+    const alternatives = {
+      "plastic bags": "Reusable cloth bags, cotton bags, or paper bags.",
+      "plastic water bottles": "Reusable stainless steel or glass water bottles.",
+      "plastic straws": "Stainless steel, bamboo, glass, or paper straws.",
+      "plastic cutlery": "Bamboo, wooden, or stainless steel cutlery.",
+      "plastic wrap": "Beeswax wraps, reusable silicone lids, or cloth food covers.",
+      "plastic toothbrushes": "Bamboo toothbrushes with replaceable heads."
+    };
+
+    function suggest() {
+      const input = document.getElementById("item").value.toLowerCase();
+      const result = document.getElementById("result");
+      result.innerHTML = alternatives[input] 
+        ? `<strong>Suggestion:</strong> ${alternatives[input]}` 
+        : "Sorry, no suggestion found.";
+    }
+  </script>
+</body>
+</html>
